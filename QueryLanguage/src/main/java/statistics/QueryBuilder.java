@@ -24,9 +24,17 @@ public class QueryBuilder {
         matchers = new ArrayList();
         return new And(matcherArray);
     }
+    
+    public Matcher and(Matcher ... matcher) {
+        return new And(matcher);
+    }
      
     public Matcher oneOf(Matcher ... matcher) {   
         return new Or(matcher);
+    }
+    
+    public Matcher not(Matcher ... matcher) {
+        return new Not(matcher);
     }
     
     QueryBuilder playsIn(String team) {

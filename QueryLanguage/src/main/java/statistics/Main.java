@@ -27,15 +27,14 @@ public class Main {
 //                         .hasAtLeast(3, "goals")
 //                         .build();
         Matcher m1 = query.playsIn("PHI")
-                          .hasAtLeast(10, "goals")
-                          .hasFewerThan(20, "assists")
                           .build();
 
-        Matcher m2 = query.playsIn("EDM")
-                          .hasAtLeast(60, "points")
+        Matcher m2 = query.hasFewerThan(5, "goals")
                           .build();
+        
+        Matcher m3 = query.not(m2);
 
-        Matcher m = query.oneOf(m1, m2);
+        Matcher m = query.and(m1, m3);
 
         for (Player player : stats.matches(m)) {
             System.out.println(player);
